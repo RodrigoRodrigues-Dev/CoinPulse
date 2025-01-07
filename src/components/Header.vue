@@ -1,5 +1,5 @@
 <template>
-    <v-app-bar v-if="smAndDown" class="px-5" style="background-color: #1111;">
+    <v-app-bar v-if="smAndDown" class="px-5" :style="{ backgroundColor: backgroundColor }">
         <!-- Hamburger Button -->
         <v-app-bar-nav-icon @click="toggleIsModalVisible"></v-app-bar-nav-icon>
 
@@ -20,19 +20,19 @@
 </template>
 
 <script setup>
-// Imports
 import { useAppStore } from '@/stores/app.js';
 import { useDisplay } from 'vuetify';
 import { useTheme } from 'vuetify';
 import { useThemeFunction } from '@/stores/themeFunction';
 
-// Reactive Variables
 const { smAndDown } = useDisplay();
 const appStore = useAppStore();
 const themeFunction = useThemeFunction();
 const theme = useTheme();
 
-// Methods
+// Computed property to change background color based on theme
+const backgroundColor = computed(() => themeFunction.darkMode ? '#000000' : '#fff');
+
 const toggleIsModalVisible = () => {
     appStore.isModalVisible = !appStore.isModalVisible;
 };
