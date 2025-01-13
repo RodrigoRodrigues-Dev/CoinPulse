@@ -74,11 +74,7 @@ onMounted(async () => {
 
 <style scoped>
 .price-chart {
-  margin: 40px 0;
-
-  @media (max-width: 960px) {
-    margin: 0 0 10px 0;
-  }
+  margin-bottom: 1rem;
 }
 
 .chart-container {
