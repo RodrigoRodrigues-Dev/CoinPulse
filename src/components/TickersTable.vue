@@ -1,8 +1,7 @@
 <template>
-    <v-col>
-        <h4>Tickers</h4>
-        <!-- Simple table displaying tickers information -->
-        <v-table dense width="100%">
+    <v-col> 
+        <h4 class="py-4">Tickers</h4>
+        <v-table dense width="100%" style="height: 500px;">
             <thead>
                 <tr>
                     <th class="text-start"><span class="mdi mdi-menu-up"></span>#</th>
@@ -13,7 +12,6 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- Iterating through tickers and displaying data -->
                 <tr v-for="(ticker, index) in tickers" :key="ticker.market.name + ticker.last">
                     <td>
                         <span class="mdi mdi-star-outline mr-3"></span>
@@ -35,7 +33,6 @@
 </template>
 
 <script setup>
-// Define as propriedades aceitas pelo componente
 defineProps({
     tickers: {
         type: Array,
@@ -45,7 +42,6 @@ defineProps({
 </script>
 
 <style scoped>
-/* Estilo para garantir alinhamento correto */
 .text-start {
     text-align: left;
 }
