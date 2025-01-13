@@ -1,7 +1,7 @@
 <template>
   <CoinPriceMarquee />
+  <PriceChart coinId="bitcoin" coinName="Bitcoin"/>
   <CoinDetails
-    class="mt-10"
     :coinImage="coinImage"
     :coinData="coinData"
     :tickers="tickers"
@@ -19,6 +19,7 @@ import { ref, computed, onMounted } from "vue";
 import axios from "axios";
 import CoinPriceMarquee from "@/components/CoinPriceMarquee.vue";
 import CoinDetails from "@/components/CoinDetails.vue";
+import PriceChart from "@/components/PriceChart.vue";
 
 const coinData = ref({});
 const tickers = ref([]);
