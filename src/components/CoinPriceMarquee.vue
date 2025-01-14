@@ -1,6 +1,6 @@
 <template>
     <!-- Marquee container -->
-    <div style="position: fixed; top: 0; z-index: 999;" :class="['marquee-container', theme.global.name.value === 'dark' ? 'dark-theme' : 'light-theme']">
+    <div style="position: sticky; top: 0; z-index: 999;" :class="['marquee-container', theme.global.name.value === 'dark' ? 'dark-theme' : 'light-theme']">
         <div class="marquee-content" ref="marqueeContent">
             <!-- Coins displayed twice for smooth looping -->
             <div class="coin" v-for="coin in doubledCoins" :key="coin.id + Math.random()">
@@ -26,29 +26,27 @@ import axios from "axios";
 const theme = useTheme();
 
 // List of coins
-const coins = ref([]);
+const coins = ref([]); 
 
 // Fetch coin data
 const fetchCoins = async () => {
     try {
         const response = await axios.get(
-            "https://api.coingecko.com/api/v3/coins/markets",
-            {
-                params: {
-                    vs_currency: "usd",
-                    order: "market_cap_desc",
-                    per_page: 10,
-                    page: 1,
-                },
-            }
+            "https://api.coincap.io/v2/assets?limit=10"
         );
-        coins.value = response.data;
+        coins.value = response.data.data.map(coin => ({
+            id: coin.id,
+            symbol: coin.symbol,
+            current_price: parseFloat(coin.priceUsd),
+            price_change_percentage_24h: parseFloat(coin.changePercent24Hr),
+            image: `https://assets.coincap.io/assets/icons/${coin.symbol.toLowerCase()}@2x.png`
+        }));
     } catch (error) {
         console.error("Error fetching coin data:", error);
     }
 };
 
-const doubledCoins = computed(() => [...coins.value, ...coins.value]);
+const doubledCoins = computed(() => Array.isArray(coins.value) ? [...coins.value, ...coins.value] : []);
 
 onMounted(() => {
     fetchCoins();
