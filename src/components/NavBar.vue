@@ -9,13 +9,13 @@
 
         <!-- Top Menu -->
         <RouterLink style="color: inherit;" v-for="(item, index) in menuItemsTop" :key="index"
-            :to="item.name === 'Home' ? '/' : `/${item.name}`">
+            :to="item.name === 'Home' ? '/' : `/${item.name}`" exact>
             <v-list-item 
                 @click="renameSelectPage(item)" 
                 @mouseover="hoveredItem = item.name"
                 @mouseleave="hoveredItem = null" 
                 class="d-flex justify-center mt-5">
-                <v-icon :class="{ 'icon-hover': hoveredItem === item.name || appStore.selectPage === item.name }">
+                <v-icon :class="{ 'icon-hover': hoveredItem === item.name || isCurrentPage(item) }">
                     {{ item.icon }}
                 </v-icon>
             </v-list-item>
@@ -39,13 +39,13 @@
             </v-list-item>
 
             <!-- User Menu -->
-            <RouterLink style="color: inherit;" :to="'/User'">
+            <RouterLink style="color: inherit;" :to="'/User'" exact>
                 <v-list-item 
                     @mouseover="hoveredItem = 'User'" 
                     @mouseleave="hoveredItem = null" 
                     class="d-flex justify-center" 
                     link>
-                    <v-icon :class="{ 'icon-hover': hoveredItem === 'User' }">
+                    <v-icon :class="{ 'icon-hover': hoveredItem === 'User' || isCurrentPage({ name: 'User' }) }">
                         mdi-account-outline
                     </v-icon>
                 </v-list-item>
@@ -58,7 +58,7 @@
                 </v-icon>
             </v-list-item>
 
-            <RouterLink style="color: inherit;" to="/SignIn" v-if="!userStore.userIsLoggedIn">
+            <RouterLink style="color: inherit;" to="/SignIn" v-if="!userStore.userIsLoggedIn" exact>
                 <v-list-item class="d-flex justify-center" link>
                     <v-icon>
                         mdi-login
@@ -77,7 +77,7 @@ import { useAppStore } from '@/stores/app';
 import { useDisplay } from 'vuetify';
 import { useTheme } from 'vuetify';
 import { useThemeFunction } from '@/stores/themeFunction';
-import { RouterLink } from 'vue-router';
+import { RouterLink, useRoute } from 'vue-router';
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import router from '@/router';
 
@@ -87,6 +87,7 @@ const appStore = useAppStore();
 const themeFunction = useThemeFunction();
 const { mdAndUp } = useDisplay();
 const theme = useTheme();
+const route = useRoute();
 
 // Reactive State
 const hoveredItem = ref(null);
@@ -112,8 +113,8 @@ const menuItemsTop = [
     { icon: 'mdi-earth-box', name: 'Home' },
     { icon: 'mdi-view-dashboard', name: 'DashBoard' },
     { icon: 'mdi-finance', name: 'Graphics' },
-    { icon: 'mdi-source-fork', name: 'Fork' },
-    { icon: 'mdi-database-outline', name: 'DataBase' }
+    { icon: 'mdi mdi-newspaper', name: 'NewsFeed' },
+    { icon: 'mdi mdi-bitcoin', name: 'CryptoTrends' }
 ];
 
 // Toggle Theme function
@@ -125,6 +126,11 @@ const toggleTheme = () => {
 // Rename page on selection
 const renameSelectPage = (item) => {
     appStore.selectPage = item.name;
+};
+
+// Check if the current route matches the item's route
+const isCurrentPage = (item) => {
+    return route.path === (item.name === 'Home' ? '/' : `/${item.name}`);
 };
 
 // Initialize Authentication and set user state
