@@ -102,7 +102,7 @@ export default {
         async fetchNews() {
             try {
                 const response = await axios.get(
-                    "https://newsapi.org/v2/everything?q=cryptocurrency&apiKey=f97161fd547e430ebd7cc9ca70600a82"
+                    "/api/news"
                 );
                 this.news = response.data.articles.filter(article => 
                     !article.title.includes("[Removed]") && article.urlToImage

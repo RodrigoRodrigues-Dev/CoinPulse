@@ -1,5 +1,9 @@
 {
   "rewrites": [
+    {
+      "source": "/api/news",
+      "destination": "https://newsapi.org/v2/everything?q=cryptocurrency&apiKey=f97161fd547e430ebd7cc9ca70600a82"
+    },
     { "source": "/(.*)", "destination": "/" }
   ]
 }
