@@ -58,7 +58,7 @@ Acesse funcionalidades exclusivas ao fazer login na plataforma. Usuários autent
 ```sh
 git clone https://github.com/RodrigoRodrigues-Dev/CoinPulse.git
 
-cd NikeVibeShop
+cd CoinPulse
 ```
 
 2. **Instale as dependências:**

@@ -23,7 +23,7 @@
         <v-text-field v-model="searchQuery" label="Search for a cryptocurrency" outlined></v-text-field>
       </v-col>
     </v-row>
-    
+
 
     <v-row>
       <v-col cols="12">
@@ -94,11 +94,7 @@ const itemsPerPage = 9;
 // Fetch coins data from API
 const fetchCoins = async () => {
   try {
-    const response = await axios.get('https://api.coincap.io/v2/assets', {
-      params: {
-        limit: 100,
-      },
-    });
+    const response = await axios.get(`https://rest.coincap.io/v3/assets?apiKey=${import.meta.env.VITE_COINCAP_API_KEY}`);
     coins.value = response.data.data.map(coin => ({
       ...coin,
       category: getCategory(coin), // Assign category to each coin
@@ -143,11 +139,7 @@ const pageCount = computed(() => {
 // Fetch sector growth data from API
 const fetchSectorGrowthData = async () => {
   try {
-    const response = await axios.get('https://api.coincap.io/v2/assets', {
-      params: {
-        limit: 100,
-      },
-    });
+    const response = await axios.get(`https://rest.coincap.io/v3/assets?apiKey=${import.meta.env.VITE_COINCAP_API_KEY}`);
     const data = response.data.data;
     const sectorGrowth = {
       DeFi: data.filter(coin => getCategory(coin) === 'DeFi').length,
