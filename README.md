@@ -56,9 +56,9 @@ Acesse funcionalidades exclusivas ao fazer login na plataforma. Usuários autent
 1. **Clone o repositório:**
 
 ```sh
-git clone https://github.com/RodrigoRodrigues-Dev/CoinPulse.git
+git clone https://github.com/RodrigoRodrigues-Dev/coin-pulse.git
 
-cd CoinPulse
+cd coin-pulse
 ```
 
 2. **Instale as dependências:**
@@ -66,6 +66,16 @@ cd CoinPulse
 ```sh
 npm install
 ```
+<br>
+
+# Variáveis de Ambiente
+
+Para rodar localmente, copie o arquivo `.env.example` para `.env`
+
+| Nome           | Descrição                              | Onde obter                        |
+| -------------- | -------------------------------------- | --------------------------------- |
+| `VITE_COIN_API_KEY`      | Chave de API utilizada para autenticar requisições à API da CoinAPI, que fornece dados de mercado de criptomoedas.  | https://docs.coinapi.io/ |
+| `VITE_COINCAP_API_KEY`   | Chave de API usada para autenticação nas requisições à API da CoinCap, que também oferece dados de preços e mercado de criptoativos. | https://pro.coincap.io/api-docs |
 <br>
 
 ## 📃 Licença
