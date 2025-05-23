@@ -83,11 +83,3 @@ Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICE
 <br>
 ## ☎️ Contato
 Desenvolvido por [Rodrigo Rodrigues](https://github.com/RodrigoRodrigues-Dev). Entre em contato por 📧 [rodrigorodriguesdevcontato@gmail.com](mailto:rodrigorodriguesdevcontato@gmail.com)
-
-### Alterações principais:
-
-1. **Nome do projeto**: Alterado para **CoinPulse**.
-2. **Funcionalidades**: Adaptei as descrições para refletir os recursos específicos do CoinPulse.
-3. **Tecnologias**: Atualizadas para incluir Firebase, Vuetify e Chart.js.
-4. **Instruções de instalação**: Acrescentei um passo para configurar o Firebase.
-5. **Seções visuais**: Adicionei subseções específicas sobre gráficos, favoritos e autenticação.
